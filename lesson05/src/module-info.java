@@ -4,5 +4,5 @@
 /**
  * 
  */
-module lesson02 {
+module lesson05 {
 }
