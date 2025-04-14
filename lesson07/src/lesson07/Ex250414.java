@@ -10,19 +10,17 @@ public class Ex250414 {
 		//1 1 2 3 5 8 13 21 34 55 89 ............
 	
 		
-		int[] arr = new int[20];
-		int[] fib = new int[20];
-		
-		for(int i = 0 ; i <= arr.length ; i++) {
-			arr[0] = 1;
-			arr[i+2] = arr[i+1] + arr[i];
-			
-			fib[i] = arr[i+2];
-			
-		
-			System.out.println(Arrays.toString(fib));
-//			System.out.println(Arrays.toString(arr));
-		}
+//		int[] arr = new int[30];
+//		int[] fib = new int[20];
+//		
+//		for(int i = 0 ; i <= arr.length ; i++) {
+//			arr[0] = 1;
+//			arr[i+2] = arr[i+1] + arr[i];
+//			
+//			fib[i] = arr[i+2];
+//				
+//			System.out.println(Arrays.toString(fib));
+//		}
 		
 		/*
 		arr[0] = 1
@@ -35,32 +33,27 @@ public class Ex250414 {
 		arr[i] = arr[i-1] + arr[i-2]
 		*/
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		//50개의 길이를 가지는 정수 배열 생성. 각 값은 1 ~ 20사이의 숫자로 채우기
 		//이후 중복된 값을 제거한 새로운 배열 생성
 		
-//		int[] num = new int [50];
-//		for(int i = 0 ; i < 20 ; i++) {
-//			int[] su = new int[20];
-//			su[i] = (int)(Math.random() * 20) + 1;
-//			System.out.println(Arrays.toString(su));
-//		}
+		int[] su = new int[20];
+		int[] num = new int [50];
+		
+		for(int i = 0 ; i < 20 ; i++) {
+			su[i] = (int)(Math.random() * 20) + 1;
+		}
+		System.out.println(Arrays.toString(su));
 		
 		
-		
+		int[] a = new int[20];
+		for(int i = 0; i < su.length; i++) {
+			if(i == su.length) {
+				a[i] = su.length / su[i];
+				System.out.println(Arrays.toString(a));
+			}
+		}
 		
 		
 		
@@ -72,6 +65,10 @@ public class Ex250414 {
 		* **
 		* *****
 		*       */
+		
+		
+		//시계방향 90도
+		
 		
 //		char[][] chs = {
 //				{'*', '*',' ',' ',' '},
