@@ -1,39 +1,56 @@
 package student;
-
-
-
 //핵심적인 로직 클래스 - service  /CRUD
 public class StudentService {
-	Student[] students = new Student[10];
+	Student[] students = new Student[2];
+	int count = 0;		//-> 학생정보가 등록완료되면 담는다
+	// { null,null,null,null,null,null,null,null,null,null }
+	int num = 0;
 
 	//등록
 	void register() {
 		System.out.println("등록 기능");
 		//학생 정보 등록 후 출력
+		int no = StudentUtils.nextInt("학번 > " );
+		String name = StudentUtils.nextLine("이름 > " );
+		int kor = StudentUtils.nextInt("국어 > " );
+		int eng = StudentUtils.nextInt("영어 > " );
+		int mat = StudentUtils.nextInt("수학 > " );
 		
-		
-		//scanner를 가져다 쓴다...
-		System.out.println(StudentUtils.nextLine("이름을 입력하세요 > "));
-		System.out.println(StudentUtils.nextInt("학번을 입력하세요 > "));
-		System.out.println(StudentUtils.nextInt("국어 점수를 입력하세요 > "));
-		System.out.println(StudentUtils.nextInt("수학 점수를 입력하세요 > "));
-		System.out.println(StudentUtils.nextInt("영어 점수를 입력하세요 > "));
-
+		students[count++] = new Student(no, name, kor, eng, mat);
+		//students[0]에 학생의 정보 입력
 
 	}
 	
 	//조회
 	void read() {
 		System.out.println("조회 기능");
+		for(int i = 0 ; i < count ; i++) {
+			System.out.println(students[i].no + " , " + students[i].name + " , " + students[i].total() + " , " + students[i].avg());
+		}
 	}
 	
 	//수정
 	void modify() {
 		System.out.println("수정 기능");
+		int input =  StudentUtils.nextInt("수정할 학번을 입력하세요 > " );	//변수
+		for(int i = 0; i < count ; i++) {
+			if( input == students[i].no ) {	//
+				System.out.println(students[i].no);
+				//새로 입력값 출력
+				int kor = StudentUtils.nextInt("국어 > " );
+				int eng = StudentUtils.nextInt("영어 > " );
+				int mat = StudentUtils.nextInt("수학 > " );
+				//수정된 학생 정보 저장
+				
+			}else {
+				System.out.println(StudentUtils.nextLine("학번을 다시 입력하세요 >  " ));
+			}
+		}
 	}
 	//삭제
 	void remove(){
 		System.out.println("삭제 기능");
+		int input =  StudentUtils.nextInt("삭제할 학생의 > " );	//변수
 	}
 	
 }

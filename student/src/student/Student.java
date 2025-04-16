@@ -15,11 +15,12 @@ public class Student {
 	int kor;
 	int eng;
 	int mat;
-	int sum;
-	int avg;
 	
-	Student(){	//기본 생성자
-	}
+	
+	
+	
+	Student(){ }	//기본 생성자
+	
 	
 	Student(int no, String name){
 		this.no = no;
@@ -27,8 +28,7 @@ public class Student {
 	}
 	
 	Student(int no, String name , int kor, int eng, int mat){
-		this.no = no;
-		this.name = name;
+		this(no, name);		//다른 생성자의 값을 가져오는 것 -> 반드시 첫줄에 실행!
 		this.kor = kor;
 		this.eng = eng;
 		this.mat = mat;
@@ -40,11 +40,16 @@ public class Student {
 		this.mat = mat;
 	}
 	
-	Student(int sum , int avg){		//합계와 평균
-		this.kor = sum;
-		this.eng = avg;
+	int total() {		//총점을 계산하는 메서드를 만들어라
+		return kor + eng + mat ;
 	}
 	
+	int avg() {
+		return total() /3;
+	}
 	
-	
+	//1. 평균 계산하기 double- 메서드 사용
+	//2. studentService의 수정과 삭제 기능 채우고
+	//3. 학번을 제외한 나머지 값 삭제 - 그냥 새로 입력 받아 채우기
+	//4. 배열 늘리고(2배) 학생 추가
 }

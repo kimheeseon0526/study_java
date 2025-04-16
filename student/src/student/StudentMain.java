@@ -10,15 +10,12 @@ public class StudentMain {
 //		
 		Student st = new Student(50,60,70);
 		
-		System.out.println("합계 : " + (st.eng + st.kor + st.mat));
-		System.out.println("평균 : " + (st.eng + st.kor + st.mat)/3);
-		
-		System.out.println(StudentUtils.nextInt("숫자를 입력하세요 > "));
 		
 		StudentService service = new StudentService();
 		System.out.println("========================학생 점수 관리 프로그램============================");
 		
 	
+		System.out.println(StudentUtils.nextInt("숫자를 입력하세요 > "));
 		
 		for(; ;) {
 			switch(StudentUtils.nextInt("1.등록 2.조회 3.수정 4.삭제 5.종료")) {
