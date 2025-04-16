@@ -44,8 +44,8 @@ public class Student {
 		return kor + eng + mat ;
 	}
 	
-	int avg() {
-		return total() /3;
+	double avg() {
+		return total() /3d;
 	}
 	
 	//1. 평균 계산하기 double- 메서드 사용
