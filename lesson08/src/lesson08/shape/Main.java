@@ -10,6 +10,21 @@ public class Main {
 //		System.out.println(rect.area());
 //		System.out.println(rect.circum());
 		
+		new Shape() {
+			
+			@Override
+			public double circum() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			@Override
+			public double area() {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		};
+		
 		Shape[] shapes = {circle, rect};
 		
 		for(int i = 0; i <shapes.length; i++) {
