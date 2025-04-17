@@ -7,10 +7,11 @@ public class StudentService {
 	Student[] students = new Student[2];
 	int count = 0;		//-> 학생정보가 등록완료되면 담는다
 	// { null,null,null,null,null,null,null,null,null,null }
+	int avgkor, avgeng, avgmat = 0;
 	
 	{
-		students[count++] = new Student(1,"개똥이", 90, 70, 90);
-		students[count++] = new Student(2,"새똥이", 80, 70, 100);
+		students[count++] = new Student(1,"개똥이", 80, 40, 90);
+		students[count++] = new Student(2,"새똥이", 70, 65, 100);
 	}
 	
 
@@ -22,8 +23,11 @@ public class StudentService {
 		int no = StudentUtils.nextInt("학번 > " );
 		for(int i = 0 ; i < count ; i++) {
 			if(no == students[i].no) {
-				System.out.println(StudentUtils.nextInt("중복된 학번입니다. 학번을 다시 입력하세요: > "));
+				System.out.println(StudentUtils.nextInt("중복된 학번입니다."));
+				
+				
 			}
+			System.out.println(StudentUtils.nextInt("중복된 학번입니다. 학번을 다시 입력하세요: > "));
 		}
 		String name = StudentUtils.nextLine("이름 > " );
 		int kor = StudentUtils.nextInt("국어 > " );
@@ -100,13 +104,31 @@ public class StudentService {
 		}
 	}
 		
-		public static void main(String[] args) {
-		int[] arr = {1,2,3,4,5};
-		int idx = 0;
-		System.arraycopy(arr,  idx + 1, arr, idx , arr.length -1 -idx);
-		System.out.println(Arrays.toString(arr));
-	
+	void average() {
+		for(int i = 0 ; i < count ; i++) {
+			avgkor += students[i].kor ;
+			avgeng += students[i].eng ;
+			avgmat += students[i].mat ;
+				
+		}
+		System.out.println((avgkor/count) +"," + (avgeng/count) +","+ (avgmat/count)+"," + ((avgkor + avgeng + avgmat)/3d));
 	}
+	
+	void rank() { //총점의 석차순 정렬(고득점자 순)
+//		for(int i = 0; i < count ; i++) {
+//			if() {
+//				
+//			}
+//		}
+	}
+	
+//		public static void main(String[] args) {
+//		int[] arr = {1,2,3,4,5};
+//		int idx = 0;
+//		System.arraycopy(arr,  idx + 1, arr, idx , arr.length -1 -idx);
+//		System.out.println(Arrays.toString(arr));
+//	
+//	}
 		
 }
 //1. 중복학번 학생 등록 방지

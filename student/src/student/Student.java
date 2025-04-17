@@ -13,13 +13,20 @@ public class Student {
 	int no;
 	String name;
 	int kor;
+	@Override
+	public String toString() {
+		return "Student [no=" + no + ", name=" + name + ", kor=" + kor + ", eng=" + eng + ", mat=" + mat + ", total()="
+				+ total() + ", avg()=" + avg() + "]";
+	}
+
 	int eng;
 	int mat;
 	
 	
 	
 	
-	Student(){ }	//기본 생성자
+	
+	Student (){ }	//기본 생성자
 	
 	
 	Student(int no, String name){
@@ -47,6 +54,10 @@ public class Student {
 	double avg() {
 		return total() /3d;
 	}
+	
+	
+	
+	
 	
 	//1. 평균 계산하기 double- 메서드 사용
 	//2. studentService의 수정과 삭제 기능 채우고

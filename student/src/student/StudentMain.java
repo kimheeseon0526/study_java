@@ -8,7 +8,7 @@ public class StudentMain {
 //		
 //		//사용자로부터 숫자를 입력 받고 싶음
 //		
-		Student st = new Student(50,60,70);
+//		Student st = new Student(50,60,70);
 		
 		
 		StudentService service = new StudentService();
@@ -32,10 +32,10 @@ public class StudentMain {
 				service.remove();
 				break;
 			case 5 :
-				service.remove();
+				service.average();
 				break;
 			case 6 :
-				service.remove();
+				service.rank();
 				break;
 			case 7 :
 				System.out.println("bye~");;
