@@ -13,12 +13,6 @@ public class Student {
 	int no;
 	String name;
 	int kor;
-	@Override
-	public String toString() {
-		return "Student [no=" + no + ", name=" + name + ", kor=" + kor + ", eng=" + eng + ", mat=" + mat + ", total()="
-				+ total() + ", avg()=" + avg() + "]";
-	}
-
 	int eng;
 	int mat;
 	
@@ -26,33 +20,37 @@ public class Student {
 	
 	
 	
-	Student (){ }	//기본 생성자
+	public Student (){ }	//기본 생성자
 	
 	
-	Student(int no, String name){
+	public Student(int no, String name){
 		this.no = no;
 		this.name = name;
 	}
 	
-	Student(int no, String name , int kor, int eng, int mat){
+	public Student(int no, String name , int kor, int eng, int mat){
 		this(no, name);		//다른 생성자의 값을 가져오는 것 -> 반드시 첫줄에 실행!
 		this.kor = kor;
 		this.eng = eng;
 		this.mat = mat;
 	}
 	
-	Student(int kor , int eng, int mat){
+	public Student(int kor , int eng, int mat){
 		this.kor = kor;
 		this.eng = eng;
 		this.mat = mat;
 	}
 	
-	int total() {		//총점을 계산하는 메서드를 만들어라
+	public int total() {		//총점을 계산하는 메서드를 만들어라
 		return kor + eng + mat ;
 	}
 	
-	double avg() {
+	public double avg() {
 		return total() /3d;
+	}
+	
+	 public String toString() {
+		return String.format("%5d %5s %5d  %5d %5d %5.2f %5d", no, name, kor, eng, mat, avg(), total()) ;
 	}
 	
 	
