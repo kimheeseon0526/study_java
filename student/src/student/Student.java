@@ -16,12 +16,7 @@ public class Student {
 	int eng;
 	int mat;
 	
-	
-	
-	
-	
 	public Student (){ }	//기본 생성자
-	
 	
 	public Student(int no, String name){
 		this.no = no;

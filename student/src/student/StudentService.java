@@ -5,10 +5,11 @@ import java.util.Arrays;
 //1.모든 필드, 메서드, 생성자 > 접근제한자
 //1.1 필드 private  메서드 public 생성자 public
 //2.어떤 값을 입력하더라도 예외 처리(프로그램 종료는 정상 종료만, 나머지는 비정상 종료)
-//3.점수값 입력의 범위 0 ~ 100 사이만 인정 -> 등록, 수정
+//3.점수값 입력의 범위 0 ~ 100 사이만 인정 -> 등록 - ok, 수정
 //4.이름 입력은 한글만 인정, 2 ~ 4글자 사이 -> 등록, 수정
 //5.임시데이터의 점수값을 랜덤으로 배정(60~100) -> 등록?
-//6.삼각형,원기둥, 육면체, 삼각기둥 -> 겉넓이, 부피 구하기 (즉, 4개의 클래스 추가로)
+//6.삼각형의 둘레 및 넓이 - ok
+//6-1.원기둥, 육면체, 삼각기둥 -> 겉넓이, 부피 구하기 (즉, 3개의 클래스 추가로)
 
 
 //핵심적인 로직 클래스 - service  /CRUD
@@ -33,11 +34,12 @@ public class StudentService {
 	//입력 : 학번
 	//출력 : 학생 
 	
+	//중복여부확인
 	Student findBy(int no) {
 		Student student = null;
 		for(int i = 0; i < count ; i++) {
 			if(students[i].no == no) {
-				student =students[i];
+				student = students[i];
 				break;
 			}
 		}
@@ -48,8 +50,6 @@ public class StudentService {
 	public void register() {
 		
 		System.out.println("등록 기능");
-		//학생 정보 등록 후 출력
-		
 		//풀이
 		int no = StudentUtils.nextInt("학번 : " );
 		Student s = findBy(no);
@@ -64,23 +64,33 @@ public class StudentService {
 //				return ;	//초기메뉴로 돌아간다
 //			}
 //		}
-//		
 
 		String name = StudentUtils.nextLine("이름 > " );
 		int kor = StudentUtils.nextInt("국어 > " );
+		if(kor < 0 || kor > 100) {
+			System.out.println("입력가능한 점수의 범위를 벗어났습니다. ");
+			return ;
+		}
 		int eng = StudentUtils.nextInt("영어 > " );
+		if(eng < 0 || eng > 100) {
+			System.out.println("입력가능한 점수의 범위를 벗어났습니다. ");
+			return ;
+		}
 		int mat = StudentUtils.nextInt("수학 > " );
-		
-		if(count == students.length) {
-			students = Arrays.copyOf(students, students.length * 2);
+		if(mat < 0 || mat > 100) {
+			System.out.println("입력가능한 점수의 범위를 벗어났습니다. ");
+			return ;
 		}
 		
+	
+		if(count == students.length) {
+			students = Arrays.copyOf(students, students.length * 2);
+		}	
 		students[count++] = new Student(no, name, kor, eng, mat);
 		//students[0]에 학생의 정보 입력
 		sortedstudents = Arrays.copyOf(students, students.length);
 		rank();	//복제하고 정렬해라
-
-	}
+		}	
 	
 	//조회
 	public void read() {
@@ -115,7 +125,7 @@ public class StudentService {
 //				students[i] = new Student(input, name, kor, eng, mat);
 //				System.out.println(students[i].no + " , " + students[i].name + " , " + students[i].total() + " , " + students[i].avg());			
 			//풀이
-				int no = StudentUtils.nextInt("수정할 학생 학번 : > ");
+				int no = StudentUtils.nextInt("수정할 학생 학번 > ");
 				Student s = findBy(no);
 				if(s == null) {
 					System.out.println("입력된 학번이 존재하지 않습니다.");
@@ -195,7 +205,7 @@ public class StudentService {
 		System.out.println("전체 평균 : " + avgAll);
 	}
 	
-		void rank() {
+	public void rank() {
 			for(int i = 0 ; i < count - 1 ; i++) {
 				int idx =  i;
 				for(int j = 1 + i ;j < count ; j++) {		//비교 대상

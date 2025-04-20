@@ -35,14 +35,14 @@ public class StudentMain {
 				service.allAvg();
 				break;
 			case 6 :
-				service.readOrder();
+				service.readOrder();	//석차순 조회
 				break;
 			case 7 :
 				System.out.println("bye~");;
 				return;
 			default :
 				break;
-					
+			//case 선택시 실제 로직클래스(service)로 이동해서 작업		
 			}
 		}
 		

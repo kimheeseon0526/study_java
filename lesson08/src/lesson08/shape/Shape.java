@@ -15,4 +15,6 @@ package lesson08.shape;
 public abstract class Shape {
 	public abstract double circum();
 	public abstract double area();
+	public abstract double area2();
+	public abstract double bupi();
 }

@@ -1,6 +1,6 @@
 package lesson08.shape;
 
-public class Rect extends Shape{
+public abstract class Rect extends Shape{
 	int x , y;
 	
 	//생성자 두개
@@ -12,7 +12,7 @@ public class Rect extends Shape{
 	
 	//메서드 두개
 	public double circum() {
-		return ( x + y) * 2 ;
+		return (x + y) * 2 ;
 	}
 	
 	public double area() {
