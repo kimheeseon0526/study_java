@@ -13,8 +13,11 @@ package lesson08.shape;
 //추상클래스로 바꾸기
 
 public abstract class Shape {
-	public abstract double circum();
+//	public abstract double circum();
 	public abstract double area();
-	public abstract double area2();
-	public abstract double bupi();
+	
+//	public String toString() {
+//		
+//	}
 }
+

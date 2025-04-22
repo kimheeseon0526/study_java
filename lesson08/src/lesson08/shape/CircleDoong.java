@@ -15,7 +15,7 @@ public class CircleDoong extends Circle {
 	}
 	
 	public double area2() {		//겉넓이
-		return (area() * 2) + (circum() * h);
+		return (area() * .2d) + (circum() * h);
 	}
 	
 	public double bupi() {		//부피

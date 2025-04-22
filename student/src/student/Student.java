@@ -10,11 +10,18 @@ public class Student {
 	//학생 1인의 총점, 평균을 계산한다면?
 	
 	
-	int no;
-	String name;
-	int kor;
-	int eng;
-	int mat;
+	//클래스 내에 선언할 위치
+	//1.필드
+	//2.생성자
+	//3.getter / setter
+	//4.추가적인 메서드
+	
+	private int no;
+	private String name;
+	private int kor;
+	private int eng;
+	private int mat;
+	//필드에 접근 제한자 설정시 service 클래스에서 사용 불가능하다 -> getter setter 써야됨
 	
 	public Student (){ }	//기본 생성자
 	
@@ -29,6 +36,40 @@ public class Student {
 		this.eng = eng;
 		this.mat = mat;
 	}
+	//no, name, kor, eng, mat
+	//getter
+	public int getNo() {
+		return no;
+	}
+	public String getName() {
+		return name;
+	}
+	public int getKor() {
+		return kor;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public int getMat() {
+		return mat;
+	}
+	//setter는 반환타입 x
+	public void setNo(int no) {
+		this.no = no;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public void setMat(int mat) {
+		this.mat = mat;
+	}
+	
 	
 	public Student(int kor , int eng, int mat){
 		this.kor = kor;
@@ -48,12 +89,6 @@ public class Student {
 		return String.format("%5d %5s %5d  %5d %5d %5.2f %5d", no, name, kor, eng, mat, avg(), total()) ;
 	}
 	
-	
-	
-	
-	
-	//1. 평균 계산하기 double- 메서드 사용
-	//2. studentService의 수정과 삭제 기능 채우고
-	//3. 학번을 제외한 나머지 값 삭제 - 그냥 새로 입력 받아 채우기
+
 	
 }

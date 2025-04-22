@@ -2,7 +2,7 @@ package student;
 
 import java.util.Arrays;
 
-//1.모든 필드, 메서드, 생성자 > 접근제한자
+//1.모든 필드, 메서드, 생성자 > 접근제한자 - ok
 //1.1 필드 private  메서드 public 생성자 public
 //2.어떤 값을 입력하더라도 예외 처리(프로그램 종료는 정상 종료만, 나머지는 비정상 종료)
 //3.점수값 입력의 범위 0 ~ 100 사이만 인정 -> 등록 - ok, 수정
@@ -22,36 +22,63 @@ public class StudentService {
 	
 	
 	{
-		students[count++] = new Student(1,"개똥이", 80, 40, 90);
-		students[count++] = new Student(2,"새똥이", 70, 65, 100);
-		students[count++] = new Student(3,"일똥이", 10, 40, 75);
-		students[count++] = new Student(4,"용똥이", 30, 100, 98);
+		students[count++] = new Student(1,"개똥이", randomScore(), randomScore(), randomScore());
+		students[count++] = new Student(2,"새똥이", randomScore(), randomScore(), randomScore());
+		students[count++] = new Student(3,"일똥이", randomScore(), randomScore(), randomScore());
+		students[count++] = new Student(4,"용똥이", randomScore(), randomScore(), randomScore());
 		
 //		sortedstudents = Arrays.copyOf(students, students.length);
 		sortedstudents = students.clone();
 		rank();	//복제하고 정렬해라
 	}
+	public int randomScore() {
+		return (int)(Math.random() * 41 + 60);
+	}
 	//입력 : 학번
 	//출력 : 학생 
 	
 	//중복여부확인
-	Student findBy(int no) {
+	public Student findBy(int no) {
 		Student student = null;
 		for(int i = 0; i < count ; i++) {
-			if(students[i].no == no) {
+			if(students[i].getNo() == no) {
 				student = students[i];
 				break;
 			}
 		}
 		return student;
 	}
-
+	public int checkRange(String subject , int input, int start, int end ) {
+		boolean ret = true;
+		if(input < start || input > end) {
+			throw new IllegalArgumentException(subject + "값의 범위를 벗어났습니다." + start + "~" + end + "사이 값 입력하쇼");
+	
+		}
+		return input;
+	}
+	public int checkRange(String subject, int input) {
+		return checkRange(subject, input, 0, 100);
+		
+	}
+	public String checkName(String name) {
+		//글자갯수 && 한글
+		if(name.length() < 2|| name.length() >4 ){
+			throw new IllegalArgumentException("이름은 2-4글자로 입력해");
+		}
+		for(int i = 0; i < name.length() ; i++) {
+			if(name.charAt(i) < '가' || name.charAt(i) > '힣'){
+				throw new IllegalArgumentException("이름은 한글로 입력해");
+			}
+		}
+		return name;
+	}
 	//등록
 	public void register() {
 		
 		System.out.println("등록 기능");
 		//풀이
 		int no = StudentUtils.nextInt("학번 : " );
+		
 		Student s = findBy(no);
 		
 		if(s != null) {
@@ -66,21 +93,18 @@ public class StudentService {
 //		}
 
 		String name = StudentUtils.nextLine("이름 > " );
-		int kor = StudentUtils.nextInt("국어 > " );
-		if(kor < 0 || kor > 100) {
-			System.out.println("입력가능한 점수의 범위를 벗어났습니다. ");
-			return ;
-		}
-		int eng = StudentUtils.nextInt("영어 > " );
-		if(eng < 0 || eng > 100) {
-			System.out.println("입력가능한 점수의 범위를 벗어났습니다. ");
-			return ;
-		}
-		int mat = StudentUtils.nextInt("수학 > " );
-		if(mat < 0 || mat > 100) {
-			System.out.println("입력가능한 점수의 범위를 벗어났습니다. ");
-			return ;
-		}
+		
+		int kor = StudentUtils.nextInt("국어 > ");
+		checkRange("국어", kor);
+		
+		
+		int eng = StudentUtils.nextInt("영어 > ");
+		checkRange("국어", eng);
+		
+		
+		int mat = StudentUtils.nextInt("수학 > ");
+		checkRange("국어", mat);
+		
 		
 	
 		if(count == students.length) {
@@ -138,10 +162,11 @@ public class StudentService {
 //						break;
 //					}
 //				}
-				s.name = StudentUtils.nextLine("이름 > " );
-				s.kor = StudentUtils.nextInt("국어 > " );
-				s.eng = StudentUtils.nextInt("영어 > " );
-				s.mat = StudentUtils.nextInt("수학 > " );
+				String name = StudentUtils.nextLine("이름 > " );
+				s.setName(name);
+				s.setKor(checkRange("국어", StudentUtils.nextInt("국어 > " )));
+				s.setEng(StudentUtils.nextInt("영어 > " ));
+				s.setMat(StudentUtils.nextInt("수학 > " ));
 				
 				sortedstudents = Arrays.copyOf(students, students.length);
 				rank();	//복제하고 정렬해라
@@ -170,7 +195,7 @@ public class StudentService {
 		}
 		
 		for(int i = 0; i < count ; i++) {
-			if(students[i].no == no) {
+			if(students[i].getNo() == no) {
 				System.arraycopy(students, i+1, students, i, count - 1 - i);
 				break;
 			}
@@ -188,9 +213,9 @@ public class StudentService {
 		
 		//count
 		for(int i = 0 ; i < count ; i++) {
-			avgKor += students[i].kor ;
-			avgEng += students[i].eng ;
-			avgMat += students[i].mat ;
+			avgKor += students[i].getKor() ;
+			avgEng += students[i].getEng() ;
+			avgMat += students[i].getMat() ;
 		}
 		avgKor /= (double)count ;
 		avgEng /= (double)count ;

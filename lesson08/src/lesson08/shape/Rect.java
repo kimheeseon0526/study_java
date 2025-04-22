@@ -1,6 +1,6 @@
 package lesson08.shape;
 
-public abstract class Rect extends Shape{
+public abstract class Rect extends Shape implements Shape2D{
 	int x , y;
 	
 	//생성자 두개
