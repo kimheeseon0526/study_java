@@ -1,37 +1,30 @@
 package student;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-//1.모든 필드, 메서드, 생성자 > 접근제한자 - ok
-//1.1 필드 private  메서드 public 생성자 public
-//2.어떤 값을 입력하더라도 예외 처리(프로그램 종료는 정상 종료만, 나머지는 비정상 종료)
-//3.점수값 입력의 범위 0 ~ 100 사이만 인정 -> 등록 - ok, 수정
-//4.이름 입력은 한글만 인정, 2 ~ 4글자 사이 -> 등록, 수정
-//5.임시데이터의 점수값을 랜덤으로 배정(60~100) -> 등록?
-//6.삼각형의 둘레 및 넓이 - ok
-//6-1.원기둥, 육면체, 삼각기둥 -> 겉넓이, 부피 구하기 (즉, 3개의 클래스 추가로)
-
+//학생 예제의 배열 > 리스트로 교체
+//이름 유효성을 정규표현식으로 교체 - Matchs와 Pattern 클래스 사용
 
 //핵심적인 로직 클래스 - service  /CRUD
 public class StudentService {
 	
-	private Student[] students = new Student[4];
-	private Student[] sortedstudents = new Student[students.length]; //값이 변할 때 -> 등록, 수정, 삭제시
-	private int count = 0;		//-> 학생정보가 등록완료되면 담는다
-	// { null,null,null,null,null,null,null,null,null,null }
-	
+	private List<Student> students = new ArrayList<Student>();
+	private List<Student> sorStudnets = new ArrayList<Student>(); //값이 변할 때 -> 등록, 수정, 삭제시	
 	
 	{
-		students[count++] = new Student(1,"개똥이", randomScore(), randomScore(), randomScore());
-		students[count++] = new Student(2,"새똥이", randomScore(), randomScore(), randomScore());
-		students[count++] = new Student(3,"일똥이", randomScore(), randomScore(), randomScore());
-		students[count++] = new Student(4,"용똥이", randomScore(), randomScore(), randomScore());
+		students.add(new Student("개똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student("새똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student("말똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student("개새똥이", randomScore(), randomScore(), randomScore()));
 		
 //		sortedstudents = Arrays.copyOf(students, students.length);
-		sortedstudents = students.clone();
-		rank();	//복제하고 정렬해라
+//		sortedstudents = students.clone();
+//		rank();	//복제하고 정렬해라
 	}
-	public int randomScore() {
+	//랜덤값 배정하는 것
+	public int randomScore() {	
 		return (int)(Math.random() * 41 + 60);
 	}
 	//입력 : 학번
@@ -40,9 +33,9 @@ public class StudentService {
 	//중복여부확인
 	public Student findBy(int no) {
 		Student student = null;
-		for(int i = 0; i < count ; i++) {
-			if(students[i].getNo() == no) {
-				student = students[i];
+		for(int i = 0; i < students.size() ; i++) {
+			if(students.get(i).getNo() == no) {
+				student = students.get(i);
 				break;
 			}
 		}
@@ -107,14 +100,14 @@ public class StudentService {
 		
 		
 	
-		if(count == students.length) {
-			students = Arrays.copyOf(students, students.length * 2);
-		}	
-		students[count++] = new Student(no, name, kor, eng, mat);
-		//students[0]에 학생의 정보 입력
-		sortedstudents = Arrays.copyOf(students, students.length);
-		rank();	//복제하고 정렬해라
-		}	
+//		if(count == students.size()) {
+//			students = Arrays.copyOf(students, students.length * 2);
+//		}	
+//		students[count++] = new Student(no, name, kor, eng, mat);
+//		//students[0]에 학생의 정보 입력
+//		sortedstudents = Arrays.copyOf(students, students.length);
+//		rank();	//복제하고 정렬해라
+//		}	
 	
 	//조회
 	public void read() {

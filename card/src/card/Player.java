@@ -1,9 +1,10 @@
 package card;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
-	Card[] cards = new Card[5];
+	List<Card> cards = new ArrayList<Card>();
 	String name;
 	
 	Player(String name) {
@@ -11,7 +12,7 @@ public class Player {
 	}
 	
 	public String toString() {
-		return Arrays.toString(cards);
+		return name + ":" + cards;
 	}
 
 }

@@ -1,14 +1,16 @@
 package card;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Deck {
-	Card[] cards = new Card[52];
-	int count;
+//	Card[] cards = new Card[52];
+	List<Card> cards = new ArrayList<Card>();  
 	{	
-		int c = 0 ;
 		for(int i =0; i < 4; i++) {
 			for(int j =0; j < 13; j++) {
-//				cards[i * 13 + j] = new Card(i, j);
-				cards[c++] = new Card(i,j);
+				cards.add(new Card(i,j));
 			}
 		}
 	}
@@ -19,20 +21,20 @@ public class Deck {
 		return this;
 	}
 	
-	Card pick() {	//카드 한 장 뽑아야하기 때문에 Card 타입
-		return cards[count++];
-	}
-	
 	Deck shuffle() {	//섞기
-		for(int i = 0; i < cards.length ; i++) {
-			int r = (int)(Math.random() * 52);
-			Card tmp = cards[i];
-			cards[i] = cards[r];
-			cards[r] = tmp;			
-		}
+//		for(int i = 0; i < cards.size() ; i++) {
+//			int r = (int)(Math.random() * 52);
+//			Card tmp = cards.get(i);
+//			cards.set(i, cards.get(r));
+//			cards.set(r, tmp);	//r번째 위치에 tmp 를 저장		
+//		}
+		Collections.shuffle(cards);
 		return this;
-		
 	}
+		
+	Card pick() {
+			return cards.remove(cards.size()-1);
+		}
 	public static void main(String[] args) {
 		new Deck().shuffle().print().shuffle().print();
 	}

@@ -23,7 +23,15 @@ public class Student {
 	private int mat;
 	//필드에 접근 제한자 설정시 service 클래스에서 사용 불가능하다 -> getter setter 써야됨
 	
-	public Student (){ }	//기본 생성자
+	Student(){}
+	
+	public Student ( String name, int kor, int eng, int mat){
+		this.name = name;
+		this.kor = kor;
+		this.eng = eng;
+		this.mat = mat;
+		
+	}	//기본 생성자
 	
 	public Student(int no, String name){
 		this.no = no;
